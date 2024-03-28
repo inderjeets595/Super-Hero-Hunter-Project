@@ -3,7 +3,7 @@ import {moreInfo,favouriteListLocalStorage,addToFavouriteList} from './moreInfo.
 
 //Define and initiate the public key,hash,apiUrl,apiKey 
 let PUBLIC_KEY  =   "9ab871748d83ae2eb5527ffd69e034de"
-let hash        =   "d35377547e551cd64a60657d2517bb7f";
+let hash        = "d35377547e551cd64a60657d2517bb7f";
 const apiUrl = 'https://gateway.marvel.com/v1/public/';
 const apiKey = `&apikey=${PUBLIC_KEY}&hash=${hash}?ts=1`;
 
