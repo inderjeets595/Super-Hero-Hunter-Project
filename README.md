@@ -27,7 +27,7 @@ This is a web application built using JavaScript, HTML, and CSS that allows user
 - Clone the repository to your local machine
 
 ```bash
-  git clone
+  git clone https://github.com/inderjeets595/Super-Hero-Hunter-Project.git
 ```
 - Obtain an API key from Marvel Developer Portal (https://developer.marvel.com/) and add it to the appropriate location in the code
 
