@@ -9,6 +9,7 @@
 body {
   width: 100vw;
   height: 100vh;
+  padding-top:6%;
   background-color: #181818;
   background-size: cover;
   background-position: no-repeat;
@@ -26,7 +27,7 @@ nav {
   display: flex;
   justify-content: center;
   width: 100vw;
-  height: 12vh;
+  height: 13vh;
   position: fixed;
   top: 0;
   border-bottom: 5px solid #232323;
@@ -101,6 +102,7 @@ nav {
 
 .slogon-container {
   width: 1300px;
+  padding-top:4%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -592,6 +594,64 @@ footer {
   z-index: 1;
 }
 
+@media screen and (min-width: 550px)  and (max-width: 600px){
+
+  .slogon-container {
+    width: 80%;
+    padding-top:38%;
+  } 
+  .slogon-head {
+    font-size: 2rem;
+  }
+  .slogon-p1,.slogon-p {
+    font-size: 0.9rem;
+   }
+   .home-search-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  input {
+    height: 10vh;
+    padding: 10px 50px;
+    font-size: 0.8rem;
+  }
+
+  
+}
+
+
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+   body{
+    /*width: 90%;*/
+    margin: 0 auto;
+  } 
+
+   .slogon-container {
+    width: 80%;
+    padding-top:10%;
+  } 
+  .slogon-head {
+    font-size: 2rem;
+  }
+  .slogon-p1,.slogon-p {
+    font-size: 0.9rem;
+   }
+   .home-search-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  input {
+    height: 10vh;
+    padding: 10px 50px;
+    font-size: 0.8rem;
+  }
+
+}
+
 @media screen and (max-width: 550px) {
 
   .logo-container img {
@@ -618,6 +678,7 @@ footer {
 
 .slogon-container {
   width: 350px;
+  padding-top:18%;
 }
 
 .slogon-p1 {
@@ -638,7 +699,7 @@ footer {
 
 input {
   width: 80vw;
-  height: 6vh;
+  height: 10vh;
   padding: 10px 50px;
   font-size: 0.8rem;
 }
