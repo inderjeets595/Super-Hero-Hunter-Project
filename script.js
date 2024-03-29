@@ -4,7 +4,7 @@ import {moreInfo,favouriteListLocalStorage,addToFavouriteList} from './moreInfo.
 //Define and initiate the public key,hash,apiUrl,apiKey 
 let PUBLIC_KEY  =   "9ab871748d83ae2eb5527ffd69e034de"
 let hash        =   "d35377547e551cd64a60657d2517bb7f";
-const apiUrl = 'http://gateway.marvel.com/v1/public/'
+const apiUrl = 'https://gateway.marvel.com/v1/public/'
 const apiKey = `&apikey=${PUBLIC_KEY}&hash=${hash}?ts=1`;
 
 //DOM manipulation 
@@ -74,7 +74,21 @@ homeSearchButton.addEventListener('click',function(){
   favouriteBody.classList.remove('active');
 })
 
-//When user input the character in the search bar then this function is called. This function also called the fetchCharacters which returns all the character available in the marvel api by matching their input value 
+//This function ensures that fetchCharacters is only called after the user has stopped typing for 300 milliseconds
+function debounce(func, delay) {
+  let timeoutId;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(context, args);
+    }, delay);
+  };
+}
+const delayedFetchCharacters = debounce(fetchCharacters, 300); // Adjust delay as needed
+
+// This function also called the fetchCharacters which returns all the character available in the marvel api by matching their input value 
 function userInput() {
   searchInput.addEventListener('input', () => {
       if (searchInput.value == "") {
@@ -91,12 +105,12 @@ function userInput() {
           moviesCardContainer.style.marginTop = "0px";
           searchbarContainer.style.marginBottom = "20px";
       }
-      fetchCharacters();
+      delayedFetchCharacters();
   });
 }
 
 
-//This function return fetch all the characters from the marvel api by name start with input type character
+//When user input the character in the search bar .This function return fetch all the characters from the marvel api by name start with input type character
 export async function fetchCharacters() {
   try {
     const response = await fetch(apiUrl + `characters?nameStartsWith=${searchInput.value.trim()}` + apiKey);
