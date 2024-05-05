@@ -207,7 +207,8 @@ async function addCharacterToDOM(id) {
     favouritelistCardContainer.appendChild(element);
   });
 }
-// funtion to show favourite list
+
+//This funtion used to fetch the list of favorite character.
 async function showFavouriteList() {
 
   favouritelistCardContainer.innerHTML = ``;
