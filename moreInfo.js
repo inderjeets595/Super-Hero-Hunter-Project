@@ -1,11 +1,11 @@
-import { apiUrl, PUBLIC_KEY, apiKey,navContainer, searchInput, moviesCardContainer,  moreInfoContainer } from './script.js';
+import { apiUrl, PUBLIC_KEY, apiKey, navContainer, searchInput, moviesCardContainer, moreInfoContainer } from './script.js';
 
 const favouritelistCardContainer = document.querySelector('.favourite-card-container');
-// funtion to store favourite list in local storage
+// It used to fetch the  favourite list characters from local storage
 let favouriteListLocalStorage = JSON.parse(localStorage.getItem('favouriteListLocalStorage'))
 
 
-// This function return the character's information
+// This function return the character's item detail information
 async function moreInfo(id) {
   const moreInfoContainer = document.querySelector('.character-more-info-container');
   moreInfoContainer.style.opacity = "1";
@@ -20,7 +20,6 @@ async function moreInfo(id) {
   moviesCardContainer.style.pointerEvents = "none";
 
   try {
-
     const request = await fetch(apiUrl + `/characters/${id}?apikey=${PUBLIC_KEY}`);
     const data = await request.json();
     if (data.status == 'Ok') {
@@ -57,11 +56,11 @@ async function moreInfo(id) {
     }
   }
   catch (error) {
-
+    console.log(error)
   }
 }
 
-// This function return the character's detail api response render into the DOM
+// This function return the character's detail inside the api response and render into the DOM element
 async function renderCharacterMoreInfo(element, data) {
   element.innerHTML = `
     <div class="character-more-info">
@@ -120,8 +119,6 @@ if (favouriteListLocalStorage == null) {
 
 //This function is used to add the characters item into the favourite list
 function addToFavouriteList(id) {
-
-
   if (moreInfoContainer.style.opacity == "1") {
     const infoFavoritelistButton = document.getElementById(`favoriteslist-button-${id}`);
     infoFavoritelistButton.innerHTML = (favouriteListLocalStorage.includes(id)) ? 'Add to Favoritelist' : 'Remove From Favoritelist';
@@ -158,6 +155,7 @@ async function fetchDataAndUpdateDOM(id) {
   return data;
 }
 
+//This function is used to render the fetch api's character response to DOM element.Inside this function, calling the moreInfo() used to return the overal detail of particular character and addToFavouriteList() is used  to add the characters item into the favourite list.
 async function addCharacterToDOM(id) {
   const data = await fetchDataAndUpdateDOM(id);
   data.data.results.forEach(data => {
@@ -196,7 +194,6 @@ async function addCharacterToDOM(id) {
         moreInfo(data.id);
       });
     }
-
     setTimeout(() => {
       const addToFavourite = document.getElementById(`add-to-fav-${id}`)
 
@@ -208,16 +205,14 @@ async function addCharacterToDOM(id) {
   });
 }
 
-//This funtion used to fetch the list of favorite character.
+//This funtion used to fetch the list of favorite character.Inside the function called the addCharacterToDom which helps to render the fetch charactor from api to DOM
 async function showFavouriteList() {
-
   favouritelistCardContainer.innerHTML = ``;
   if (favouriteListLocalStorage.length == "") {
     favouritelistCardContainer.innerHTML = `<div class="no-item-in-favouriteList-container">
             <h1 class="search-slogon">No Character in FavouriteList</h1>
         </div>`;
   } else {
-
     favouriteListLocalStorage.forEach(id => {
       addCharacterToDOM(id)
     });
@@ -225,7 +220,7 @@ async function showFavouriteList() {
   }
 }
 
-
+//Add event listener called the showFavouritelist() on DOMContentLoaded
 addEventListener("DOMContentLoaded", (event) => {
   showFavouriteList();
 });
@@ -246,17 +241,17 @@ function closeMore() {
 }
 
 // This function return the success message of toaster
-function success(msg){
+function success(msg) {
   iziToast.success({
-    title:msg,
-    position:'topRight'
+    title: msg,
+    position: 'topRight'
   })
 }
 // This function return the warning message of toaster
-function warning(msg){
+function warning(msg) {
   iziToast.warning({
-    title:msg,
-    position:'topRight'
+    title: msg,
+    position: 'topRight'
   })
 }
 
